@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste consoles{% endblock %}
+
+{% block body %}
+    <div class="row block-add-game-button" >
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <a class="add-game-button btn-secondary form-control" href="{{ path("add_hardware") }}"> Ajoute console</a>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    {%  if hardList is not empty %}
+        {% for hard in hardList  %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h2 class="game-name">{{ hard.name|title }}</h2>
+        <img src="" alt="" class="img-game-link">
+        <h3 class="release-year">{{ hard.year }}</h3>
+        <p class="game-hardware">{{ hard.hardwaremaker|title }}</p>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+        {% endfor %}
+    {%  endif %}
+{% endblock %}

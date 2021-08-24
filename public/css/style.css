@@ -1,0 +1,16 @@
+.blockHeader{
+    margin-bottom: 60px;
+
+}
+.block-add-game-button{
+    text-align: center;
+}
+.button-center{
+    text-align: center;
+}
+.game-image{
+    max-width: 300px;
+}
+.game-description{
+    text-align: center;
+}
