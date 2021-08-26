@@ -94,6 +94,7 @@ class AppFixtures extends Fixture
         $manager->persist($h4);
         $manager->persist($h5);
 
+
         $e = new Editor();
         $e->setName("konami");
         $e->setYear(1973);
@@ -151,6 +152,12 @@ class AppFixtures extends Fixture
         $g4->setHardware($h3);
         $g4->setImageLink('/alonealone/public/uploads/gamesImages/re1.jpg');
         $manager->persist($g4);
+
+        for($i=0; $i<100;$i++){
+            $game = new Game();
+            $game->setName($faker->name);
+            $game->setYear($faker->year([$max = 'now']));
+        }
 
 
         $user = new User();
