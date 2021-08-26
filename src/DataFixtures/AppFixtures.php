@@ -93,6 +93,11 @@ class AppFixtures extends Fixture
         $manager->persist($h3);
         $manager->persist($h4);
         $manager->persist($h5);
+        $tabHardware[0] = $h1;
+        $tabHardware[1] = $h2;
+        $tabHardware[2] = $h3;
+        $tabHardware[3] = $h4;
+        $tabHardware[4] = $h5;
 
 
         $e = new Editor();
@@ -157,6 +162,9 @@ class AppFixtures extends Fixture
             $game = new Game();
             $game->setName($faker->name);
             $game->setYear($faker->year([$max = 'now']));
+            $game->setGenre($tabObjGenre[rand(0,8)]);
+            $game->setHardware($tabHardware[rand(0,4)]);
+            $manager->persist($game);
         }
 
 

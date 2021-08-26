@@ -8,6 +8,7 @@ use App\Others\Messages;
 use App\Repository\GameRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use League\Csv\Reader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Response;
@@ -126,7 +127,21 @@ class GameController extends AbstractController
      */
     public function testJoin(GameRepository $gr){
 
-        $games = $gr->findJoin();
+        //$csv = fopen($this->getParameter('kernel.project_dir').'/public/csv/video_games.csv','r');
+        $reader = Reader::createFromPath($this->getParameter('kernel.project_dir').'\public\csv\video_games.csv','r');
+        //dd($reader->fetchColumn("title"));
+        //$results = $reader->addStreamFilter("title");
+        dd($reader->output());
+        //dd($csv["title"]);
 
+        //$games = $gr->findJoin();
+
+    }
+    /**
+     *
+     */
+    public function uploadCsvFile(Request $request, EntityManagerInterface $em){
+        $csv = fopen($this->getParameter('kernel.project_dir').'\public\csv\video_games.csv');
+        dd($csv);
     }
 }
