@@ -9,6 +9,7 @@ use App\Repository\GameRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,7 +58,7 @@ class GameController extends AbstractController
                         }catch (\Exception $e){
                             $this->addFlash('error','problème lors de l\'enregistrement du jeux:   ');
                         }*/
-            $game->setName(strtolower($game->getName()));
+            $game->setName(strtolower(str_replace(' ','¤',$game->getName())));
             $user = $this->getUser();
             $user->addGame($game);
             $em->persist($user);
@@ -98,14 +99,25 @@ class GameController extends AbstractController
             $user = $this->getUser();
             $game = $gr->find($idGame);
             //dd($game);
+            // j'essaye d'enlever le fichier image avec le lien du jeux
+            $imageLinkGame = $game->getImageLink();
             $user->removeGame($game);
+            if($imageLinkGame != null){
+                $file = new Filesystem();
+                $link = str_replace("/alonealone", "", $imageLinkGame);
+                //dd($imageLinkGame);
+                $link = $this->getParameter('kernel.project_dir').$link;
+                //dd($link);
+                $file->remove($link);
+
+            }
             $em->persist($user);
             $em->flush();
             /*$this->getUser()->removeGame($gr->find($idGame));
             */
             return $this->redirectToRoute("index_game");
         }catch (\Exception $e){
-
+            dd("connard");
         }
     }
 

@@ -116,27 +116,31 @@ class AppFixtures extends Fixture
         $manager->persist($e5);
 
         $g1 = new Game();
-        $g1->setName("super mario bros");
+        $g1->setName("super¤mario¤bros");
         $g1->setYear(1983);
         $g1->setEditor($e3);
         $g1->setGenre($tabObjGenre[1]);
         $g1->setHardware($h1);
+        $g1->setImageLink('/alonealone/public/uploads/gamesImages/Super-Mario-Bros.jpg');
         $manager->persist($g1);
 
+
         $g2 = new Game();
-        $g2->setName("sonic the hedgehog");
+        $g2->setName("sonicthe¤hedgehog");
         $g2->setYear(1990);
         $g2->setEditor($e4);
         $g2->setGenre($tabObjGenre[1]);
         $g2->setHardware($h2);
+        $g2->setImageLink('/alonealone/public/uploads/gamesImages/sonic1.jpg');
         $manager->persist($g2);
 
         $g3 = new Game();
-        $g3->setName("final fantasy 7");
+        $g3->setName("final¤fantasy¤7");
         $g3->setYear(1997);
         $g3->setEditor($e5);
         $g3->setGenre($tabObjGenre[6]);
         $g3->setHardware($h3);
+        $g3->setImageLink('/alonealone/public/uploads/gamesImages/ff7.jpg');
         $manager->persist($g3);
 
         $g4 = new Game();
@@ -145,6 +149,7 @@ class AppFixtures extends Fixture
         $g4->setEditor($e2);
         $g4->setGenre($tabObjGenre[0]);
         $g4->setHardware($h3);
+        $g4->setImageLink('/alonealone/public/uploads/gamesImages/re1.jpg');
         $manager->persist($g4);
 
 
@@ -155,6 +160,7 @@ class AppFixtures extends Fixture
         $user->addGame($g1);
         $user->addGame($g2);
         $user->addGame($g3);
+        $user->addGame($g4);
         $user->addHardware($h5);
         $manager->persist($user);
         $manager->flush();

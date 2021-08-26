@@ -15,7 +15,7 @@
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8 game-description">
-        <h2 class="game-name">{{ game.name|title }}</h2>
+        <h2 class="game-name">{{ game.name|title|replace({'¤': " "}) }}</h2>
         {%  if (game.imageLink)== NULL %}
             <img src="{{ asset('uploads/gamesImages/default.jpg') }}" class="game-image">
         {%  else %}
